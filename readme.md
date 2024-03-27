@@ -1,7 +1,7 @@
 SDK:
 
 ````javascript
-<script src="https://wiinvent.tv/sdk/tv/wii-sdk-1.6.19.js"></script>
+<script src="https://wiinvent.tv/sdk/tv/wii-sdk-1.6.20.js"></script>
 ````
 
 1. Code Instream Sample:
@@ -144,11 +144,12 @@ window.addEventListener("message", function (e) {
 | skipText                | Text show on skip button when time count                  |   string |
 | skippableText           | Text show on skip button when can skip                    |   string |
 | isUsePartnerSkipButton  | Decide using skip button or not                           |   string |
-| title                   | Title                                                     |   string |
-| tranId                  | TranId                                                    |   string |
-| category                | Category                                                  |   string |
-| keyword                 | Keyword                                                   |   string |
-| age                     | Age                                                       |   number |
+| title                   | Tiêu đề của nội dung                                      |   string |
+| tranId                  | Thông tin theo yêu cẩu của đối tác                        |   string |
+| category                | Danh sách danh mục - được ngăn cách bởi dấu ,             |   string |
+| keyword                 | Từ khoá tìm kiếm của nội dung (nếu có)                    |   string |
+| age                     | Tuổi (Nếu có)                                             |   number |
+| gender                  | Giới tính (nếu có)                                        | constant |
 
 4. Constant
 
