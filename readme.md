@@ -1,7 +1,7 @@
 SDK:
 
 ````javascript
-<script src="https://wiinvent.tv/sdk/tv/wii-sdk-1.6.15.js"></script>
+<script src="https://wiinvent.tv/sdk/tv/wii-sdk-1.6.17.js"></script>
 ````
 
 1. Code Instream Sample:
@@ -32,10 +32,6 @@ if (Hls.isSupported()) {
     keyword: "1, 2",
     age: "20",
     gender: "MALE",
-    manufacturer: "OPPO",
-    model: "CPH2159",
-    osName: "Android",
-    osVersion: "13",
     partnerSkipOffset: 6,
     vastLoadTimeout: 10,
     mediaLoadTimeout: 10,
@@ -89,10 +85,6 @@ wiiSdk = new WI.WelcomeSdk({
   transId: "111",
   age: "20",
   gender: "MALE",
-  manufacturer: "OPPO",
-  model: "CPH2159",
-  osName: "Android",
-  osVersion: "13",
   deviceType: WI.DeviceType.TV,
   partnerSkipOffset: 5,
   vastLoadTimeout: 10,
