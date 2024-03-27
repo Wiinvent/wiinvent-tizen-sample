@@ -1,25 +1,25 @@
 <html lang="en">
 <head>
   <style>
-      #videoId {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-      }
+    #videoId {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-      #video {
-          width: 100%;
-          height: 100%;
-      }
+    #video {
+      width: 100%;
+      height: 100%;
+    }
   </style>
-  <title>Hls.js TizenOs demo</title>
+  <title>Hls.js WebOs demo</title>
 </head>
 
 <body>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script src="https://wiinvent.tv/sdk/tv/wii-sdk-1.6.18.js"></script>
+<script src="https://wiinvent.tv/sdk/tv/wii-sdk-1.6.19.js"></script>
 
 <div id="videoId">
   <video id="video" controls></video>
@@ -42,15 +42,15 @@
       domId: "videoId",
       player: video,
       srcVideo: src,
-      channelId: "2",
-      streamId: "1999",
-      contentType: "VOD",
+      channelId: "3001",
+      streamId: "2024",
+      contentType: WI.ContentType.VOD,
       title: "noi dung 1",
       transId: "111",
       category: "1, 2",
       keyword: "1, 2",
       age: "20",
-      gender: "MALE",
+      gender: WI.Gender.MALE,
       partnerSkipOffset: 6,
       vastLoadTimeout: 10,
       mediaLoadTimeout: 10,
@@ -67,23 +67,23 @@
 
   window.addEventListener("message", function (e) {
     if (
-      [
-        "REQUEST",
-        "LOADED",
-        "START",
-        "PAUSED",
-        "RESUMED",
-        "ERROR",
-        "PLAYER_ERROR",
-        "CLICK",
-        "IMPRESSION",
-        "SKIPPED",
-        "COMPLETE",
-        "DESTROY",
-        "FULLSCREEN",
-        "END",
-        "ALL_ADS_COMPLETE",
-      ].includes(e.data.type)) {
+            [
+              "REQUEST",
+              "LOADED",
+              "START",
+              "PAUSED",
+              "RESUMED",
+              "ERROR",
+              "PLAYER_ERROR",
+              "CLICK",
+              "IMPRESSION",
+              "SKIPPED",
+              "COMPLETE",
+              "DESTROY",
+              "FULLSCREEN",
+              "END",
+              "ALL_ADS_COMPLETE",
+            ].includes(e.data.type)) {
       console.log('mmmm', e)
     }
   })
