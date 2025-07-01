@@ -1,13 +1,13 @@
 SDK:
 
 ````javascript
-<script src="https://wiinvent.tv/sdk/tv/wii-sdk-2.0.25.js"></script>
+<script src="https://wiinvent.tv/sdk/tv/wii-sdk-2.0.35.js"></script>
 ````
 
 1. Code Instream Sample:
 
 ```javascript
-var video = document.getElementById('video');
+ var video = document.getElementById('video');
 var playPauseBtn = document.getElementById('play-pause');
 var adsContainer = document.getElementById('wiinvent_ads_container_id');
 var controls = document.querySelector('.controls');
@@ -50,23 +50,21 @@ function handleAds() {
         "FULLSCREEN",
         "END",
         "All_ADS_COMPLETE",
+        "NO_ADS"
       ].includes(e.data.type)
     ) {
-      console.log("mmmm", e);
+      console.log("mmmm", e.data);
     }
     
     if (e.data.type === "REQUEST") {
       console.log("==== REQUEST ====");
-      if (!video.paused) {
-        video.pause();
-        adsContainer.zIndex = 10;
-      }
     }
     if (e.data.type === "LOADED") {
       console.log("==== LOADED ====");
     }
     if (e.data.type === "PLAYER_ERROR") {
       console.log("==== PLAYER_ERROR ====");
+      contentPlayBack();
     }
     if (e.data.type === "ERROR") {
       console.log("==== ERROR ====");
@@ -76,7 +74,16 @@ function handleAds() {
     }
     if (e.data.type === "START") {
       console.log("==== START ====");
+      if (!video.paused) {
+        video.pause();
+        wiiSdk.playAds();
+        adsContainer.zIndex = 10;
+      }
       renderSkipButton();
+    }
+    if (e.data.type === "GET_ADS") {
+      console.log("==== GET_ADS ====");
+      wiiSdk.setSource && wiiSdk.setSource();
     }
     if (e.data.type === "PAUSED") {
       console.log("==== PAUSED ====");
@@ -113,13 +120,13 @@ function handleAds() {
     }
   });
   
-  wiiSdk = new WI.InstreamSdk({
+  window.wiiSdk = new WI.InstreamSdk({
     env: WI.Environment.SANDBOX,
     tenantId: 14,
-    deviceType: WI.DeviceType.WEB,
+    deviceType: WI.DeviceType.TV,
     domId: "wiinvent_ads_container_id",
-    channelId: "2",
-    streamId: "1999",
+    channelId: "",
+    streamId: "1509",
     adId: "1999",
     contentType: WI.ContentType.VIDEO,
     title: "noi dung 1",
@@ -134,9 +141,9 @@ function handleAds() {
     osName: "",
     osVersion: "",
     partnerSkipOffset: 2,
-    vastLoadTimeout: 10,
+    vastLoadTimeout: 5,
     mediaLoadTimeout: 10,
-    bufferingVideoTimeout: 15,
+    bufferingVideoTimeout: 10,
     alwaysCustomSkip: true,
     isAutoRequestFocus: false,
     bitrate: 1024,
@@ -249,6 +256,14 @@ function renderSkipButton() {
       contentPlayBack();
     }
   });
+  window.addEventListener('keydown', () => {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      if (countdown <= 0) {
+        wiiSdk.skip();
+        contentPlayBack();
+      }
+    }
+  })
 }
 
 function visibableEle(ele, visibable = true) {
@@ -577,4 +592,3 @@ window.addEventListener('keydown', (e) => {
 | EventType | ERROR            | Fired when the ad has an error                |
 | EventType | DESTROY          | Fires when the ad destroyed                   |
 | EventType | ALL_ADS_COMPLETE | Fires when no more ad will show up            |
-
